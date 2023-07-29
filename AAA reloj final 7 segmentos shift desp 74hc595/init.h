@@ -10,7 +10,7 @@ bool seg_on = 0;
 #include "RTClib.h"
 #include <LiquidCrystal_I2C.h>
 // Describir Pines conectados
-#define buzzerPin 12  // define es una directiva de pre compliado que cambia el nombre en el codigo por el valor
+#define buzzerPin 10  // define es una directiva de pre compliado que cambia el nombre en el codigo por el valor
 #define relePin 11
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 

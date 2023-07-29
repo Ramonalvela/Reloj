@@ -1,4 +1,4 @@
-
+/*
 class claseBeeps {
 private:
   byte pin;
@@ -70,13 +70,20 @@ public:
       espacio();
     }
   }
+
+  void TonoLargo(byte i = 1) {
+    for (byte n = 1; n <= i; n++) {
+      hacerBeep(1000, 1, 1);
+     
+    }
+  }
   //---------------------------------
 
   //---------------------------------
   void evaluar(byte buzzerMode) {
 
-    // Serial.print("Modo ");
-    // Serial.println(buzzerMode);
+//     Serial.print("Modo ");         // Con fines de depuracion
+//     Serial.println(buzzerMode);    // Con fines de depuracion
 
     switch (buzzerMode) {
       case 1:  //un beep corto
@@ -108,12 +115,21 @@ public:
         Serial.println(" ok");
         ok();
         break;
+
+      case 7:
+        Serial.println(" Tono Largo");
+        TonoLargo();
+        break;
     }
   }
   //---------------------------------
 };
 claseBeeps Beeps(buzzerPin);
-//---------------------------------
+
+//--------------------------------------------------------
+
+*/
+
 DateTime leerFechaHora(bool leerFechaModoManual = 0) {
   if (leerFechaModoManual) {
     FechaHora = (fechaManual + (millis() / velocidadHoraManual));
@@ -167,7 +183,9 @@ void evaluarHorarioAlarma() {
     }
   }
 }
-//---------------------------------
+//---------------------------------  
+
+
 void HoraMonitorSerial() {
 
   leerFechaHora(leerFechaModoManual);
@@ -330,7 +348,7 @@ void HoraSr() {
   // Serial.print(" ");
   // Serial.println(segundo);
 
-  if (seg_ant  != segundo) {
+  if (seg_ant != segundo) {
     seg_ant = segundo;
     seg_on = !seg_on;
   }

@@ -1,4 +1,5 @@
 #include "init.h"
+#include "Beeps.h"
 #include "func.h"
 
 void setup() {
