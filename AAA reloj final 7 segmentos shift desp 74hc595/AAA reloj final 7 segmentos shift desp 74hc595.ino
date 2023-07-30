@@ -23,6 +23,9 @@ void setup() {
   String data = "HOLA";
   sr.print(&data);
   delay(500);
+  data = "V12.2";
+  sr.print(&data);
+  delay(2000);
 }
 
 void loop() {
