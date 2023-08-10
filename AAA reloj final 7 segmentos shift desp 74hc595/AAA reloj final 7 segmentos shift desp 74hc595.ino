@@ -14,19 +14,8 @@ void setup() {
   Serial.begin(9600);  // Establece la velocidad de datos del puerto serie
   iniciarLCD();
   revisarRTC();
-  Serial.println("Iniciando sistema");
-  Beeps.evaluar(1);
-  lcd.setCursor(0, 1);
-  delay(10);
-
-  sr.setDelayScroll(delayPersonalizado);
-  String data = "HOLA";
-  sr.print(&data);
-  delay(500);
-  data = "V12.2";
-  sr.print(&data);
-  delay(2000);
-}
+  Saludos();
+  }
 
 void loop() {
   buzzerMode = map(analogRead(A1), 1, 1023, 0, 10);

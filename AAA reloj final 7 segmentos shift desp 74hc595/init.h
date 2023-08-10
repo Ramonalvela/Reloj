@@ -1,4 +1,6 @@
 //impresion en Shift register 7 segmentos
+#define Version "V12.2"
+#define Saludo_inicial "HOLA"
 #include <ShiftRegisterQ.h>
 int delayPersonalizado = 300;
 ShiftRegisterQ sr(7, 9, 8, 7, 4);

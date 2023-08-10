@@ -1,4 +1,20 @@
-
+void Saludos() {
+  Serial.println("Iniciando sistema");
+  Beeps.evaluar(1);
+  lcd.setCursor(0, 1);
+  lcd.setCursor(6, 0);
+  lcd.print(Saludo_inicial);
+  delay(10);
+  sr.setDelayScroll(delayPersonalizado);
+  String data = Saludo_inicial;
+  sr.print(&data);
+  delay(500);
+  data = Version;
+  sr.print(&data);
+  lcd.setCursor(5, 1);
+  lcd.print(Version);
+  delay(2000);
+}
 
 DateTime leerFechaHora(bool leerFechaModoManual = 0) {
   if (leerFechaModoManual) {
@@ -53,7 +69,7 @@ void evaluarHorarioAlarma() {
     }
   }
 }
-//---------------------------------  
+//---------------------------------
 
 
 void HoraMonitorSerial() {
