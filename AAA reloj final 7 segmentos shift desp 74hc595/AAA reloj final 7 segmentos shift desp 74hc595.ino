@@ -1,5 +1,5 @@
 #include "init.h"
-#include "Beeps.h"
+//#include "Beeps.h"
 #include "func.h"
 
 void setup() {
@@ -23,8 +23,8 @@ void loop() {
   //  buzzerMode = map(analogRead(A1), 1, 1023, 0, 10);
   // Beeps.evaluar(buzzerMode);
 
-  //  buzzerMode = map(analogRead(A1), 1, 1023, 0, 10);
-  // Beeps.evaluar(buzzerMode);
+ //  buzzerMode = map(analogRead(A1), 1, 1023, 0, 10);
+ //  Beep(buzzerMode);
 
   // lcd.setCursor(14, 1);
   // lcd.print(buzzerMode);

@@ -1,27 +1,63 @@
 #include "Arduino.h"
-void UnBeep() {
-  EasyBuzzer.beep(
-    tonoHzBeep,  // Frecuencia en herzios
-    100,         // Duración beep en ms
-    100,         // Duración silencio en ms
-    1,           // Números de beeps por ciclos
-    300,         // Duración de la pausa
-    1            // Número de ciclos
-    //  sonidoTerminado// Función callback que es llamada cuando termina
-  );
-}
-void Beep(byte modo){
- 
- 
-  EasyBuzzer.beep(
-    tonoHzBeep,  // Frecuencia en herzios
-    100,         // Duración beep en ms
-    100,         // Duración silencio en ms
-    1,           // Números de beeps por ciclos
-    300,         // Duración de la pausa
-    1            // Número de ciclos
-    //  sonidoTerminado// Función callback que es llamada cuando termina
-  );
+
+void MyBeep(byte modo) {
+  Serial.println(modo);
+
+  switch (buzzerMode) {
+    case 1:  //un beep corto
+      Serial.println(" un Beep corto");
+      EasyBuzzer.beep(
+        tonoHzBeep,  // Frecuencia en herzios
+        100,         // Duración beep en ms
+        500,         // Duración silencio en ms
+        1,           // Números de beeps por ciclos
+        500,         // Duración de la pausa
+        1            // Número de ciclos
+        //  sonidoTerminado// Función callback que es llamada cuando termina
+      );
+      //tone(buzzerPin,tonoHzBeep,125);
+      // hacerBeep(100, 500);
+      break;
+
+    case 2:  //dos pitos cortos
+      Serial.println(" dos Pitidos Cortos");
+      //hacerBeep(100, 100, 2);
+      EasyBuzzer.beep(
+        tonoHzBeep,  // Frecuencia en herzios
+        100,         // Duración beep en ms
+        100,         // Duración silencio en ms
+        2,           // Números de beeps por ciclos
+        500,         // Duración de la pausa
+        1            // Número de ciclos
+                     //  sonidoTerminado// Función callback que es llamada cuando termina
+      );
+
+      break;
+    case 3:
+      Serial.println(" 15 Beeps cortos");
+      //hacerBeep(75, 50, 15);
+      break;
+
+    case 4:
+      Serial.println(" dos beeps largos y tres cortos");
+      //dosMasTres(2);
+      break;
+
+    case 5:
+      Serial.println(" SOS");
+      //SOS();
+      break;
+
+    case 6:
+      Serial.println(" ok");
+      //ok();
+      break;
+
+    case 7:
+      Serial.println(" Tono Largo");
+      //TonoLargo();
+      break;
+  }
 }
 
 
@@ -83,7 +119,9 @@ void evaluarHorarioAlarma() {
           //beep(1);
           sono = 1;
           //  Beeps.evaluar(1);
-          UnBeep();
+
+          buzzerMode = 1;
+          MyBeep(buzzerMode);
         }
       } else {
         //codigo 110
@@ -91,7 +129,9 @@ void evaluarHorarioAlarma() {
           //beep(1);
           sono = 1;
           //  Beeps.evaluar(1);
-          UnBeep();
+
+          buzzerMode = 1;
+          MyBeep(buzzerMode);
         }
       }
     } else {
@@ -101,13 +141,17 @@ void evaluarHorarioAlarma() {
           //beep(1);
           sono = 1;
           // Beeps.evaluar(1);
-          UnBeep();
+
+          buzzerMode = 1;
+          MyBeep(buzzerMode);
         }
       } else {
         //codigo 100
         if (FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0) {
           //     Beeps.evaluar(1);
-          UnBeep();
+          buzzerMode = 1;
+          MyBeep(buzzerMode);
+
           sono = 1;
         }
       }
@@ -231,12 +275,12 @@ void revisarRTC() {
   if ((FechaHora.unixtime() < FechaCero)) {
     Serial.println("ERROR CON LA BATERIA REVISAR LA FECHA");
     //beep(3);
-    Beeps.evaluar(3);
+    // Beeps.evaluar(3);// CAMBIAR AQUI
     lcd.setCursor(0, 0);
     lcd.print("FECHA ERROR");
     delay(5000);
     //beep(3);
-    Beeps.evaluar(3);
+    //Beeps.evaluar(3);//CAMBIAR AQUI
     HoraLcd();
     lcd.setCursor(10, 1);
     lcd.print("ERROR");
