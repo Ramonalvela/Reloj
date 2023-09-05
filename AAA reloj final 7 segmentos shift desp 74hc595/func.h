@@ -1,6 +1,43 @@
+#include "Arduino.h"
+void UnBeep() {
+  EasyBuzzer.beep(
+    tonoHzBeep,  // Frecuencia en herzios
+    100,         // Duración beep en ms
+    100,         // Duración silencio en ms
+    1,           // Números de beeps por ciclos
+    300,         // Duración de la pausa
+    1            // Número de ciclos
+    //  sonidoTerminado// Función callback que es llamada cuando termina
+  );
+}
+void Beep(byte modo){
+ 
+ 
+  EasyBuzzer.beep(
+    tonoHzBeep,  // Frecuencia en herzios
+    100,         // Duración beep en ms
+    100,         // Duración silencio en ms
+    1,           // Números de beeps por ciclos
+    300,         // Duración de la pausa
+    1            // Número de ciclos
+    //  sonidoTerminado// Función callback que es llamada cuando termina
+  );
+}
+
+
+
 void Saludos() {
   Serial.println("Iniciando sistema");
-  Beeps.evaluar(1);
+  // Beeps.evaluar(1);
+  EasyBuzzer.beep(
+    tonoHzBeep,  // Frecuencia en herzios
+    100,         // Duración beep en ms
+    100,         // Duración silencio en ms
+    1,           // Números de beeps por ciclos
+    300,         // Duración de la pausa
+    1            // Número de ciclos
+    //  sonidoTerminado// Función callback que es llamada cuando termina
+  );
   lcd.setCursor(0, 1);
   lcd.setCursor(6, 0);
   lcd.print(Saludo_inicial);
@@ -8,12 +45,16 @@ void Saludos() {
   sr.setDelayScroll(delayPersonalizado);
   String data = Saludo_inicial;
   sr.print(&data);
-  delay(500);
+  delay(150);
+  EasyBuzzer.stopBeep();
+  delay(350);
   data = Version;
   sr.print(&data);
   lcd.setCursor(5, 1);
   lcd.print(Version);
+  EasyBuzzer.update();
   delay(2000);
+  // EasyBuzzer.stopBeep();
 }
 
 DateTime leerFechaHora(bool leerFechaModoManual = 0) {
@@ -41,14 +82,16 @@ void evaluarHorarioAlarma() {
         if (((FechaHora.dayOfTheWeek()) >= 1 && (FechaHora.dayOfTheWeek() <= 5) && FechaHora.hour() >= 8 && FechaHora.hour() <= 18 && FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0)) {
           //beep(1);
           sono = 1;
-          Beeps.evaluar(1);
+          //  Beeps.evaluar(1);
+          UnBeep();
         }
       } else {
         //codigo 110
         if (((FechaHora.dayOfTheWeek()) >= 1 && (FechaHora.dayOfTheWeek() <= 5) && FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0)) {
           //beep(1);
           sono = 1;
-          Beeps.evaluar(1);
+          //  Beeps.evaluar(1);
+          UnBeep();
         }
       }
     } else {
@@ -57,12 +100,14 @@ void evaluarHorarioAlarma() {
         if (FechaHora.hour() >= 8 && FechaHora.hour() <= 18 && FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0) {
           //beep(1);
           sono = 1;
-          Beeps.evaluar(1);
+          // Beeps.evaluar(1);
+          UnBeep();
         }
       } else {
         //codigo 100
         if (FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0) {
-          Beeps.evaluar(1);
+          //     Beeps.evaluar(1);
+          UnBeep();
           sono = 1;
         }
       }
