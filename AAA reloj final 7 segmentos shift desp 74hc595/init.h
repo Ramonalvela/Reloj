@@ -36,7 +36,7 @@ DateTime FechaHora;
 
 bool sonarHorasPunto = 1;             // 1 Sono cada vez que es una hora en punto    0 no Sono
 bool sonarSemanaHorasPunto = 0;       // 1 Sono solo entre semana                    0 Sono tambien los fines de semana
-bool sonarSoloLaboralHorasPunto = 1;  // 1 Sono solo en horario laboral              0 Sono las 24 horas
+bool sonarSoloLaboralHorasPunto = 0;  // 1 Sono solo en horario laboral              0 Sono las 24 horas
 bool sono = 1;
 #define tonoHzBeep 600         // la frecuencia en Hertz del tono. Por defecto en 600
 bool leerFechaModoManual = 0;  //en cero lee el RTC y en 1 toma la variable fechaManual

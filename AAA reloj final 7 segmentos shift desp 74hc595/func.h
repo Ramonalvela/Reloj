@@ -1,7 +1,7 @@
 #include "Arduino.h"
 
 void MyBeep(byte modo) {
-  Serial.println(modo);
+ // Serial.println(modo);
 
   switch (buzzerMode) {
     case 1:  //un beep corto
@@ -15,13 +15,11 @@ void MyBeep(byte modo) {
         1            // Número de ciclos
         //  sonidoTerminado// Función callback que es llamada cuando termina
       );
-      //tone(buzzerPin,tonoHzBeep,125);
-      // hacerBeep(100, 500);
-      break;
+           break;
 
     case 2:  //dos pitos cortos
       Serial.println(" dos Pitidos Cortos");
-      //hacerBeep(100, 100, 2);
+      
       EasyBuzzer.beep(
         tonoHzBeep,  // Frecuencia en herzios
         100,         // Duración beep en ms
@@ -35,7 +33,15 @@ void MyBeep(byte modo) {
       break;
     case 3:
       Serial.println(" 15 Beeps cortos");
-      //hacerBeep(75, 50, 15);
+      EasyBuzzer.beep(
+        tonoHzBeep,  // Frecuencia en herzios
+        200,         // Duración beep en ms
+        100,         // Duración silencio en ms
+        15,          // Números de beeps por ciclos
+        1500,        // Duración de la pausa
+        1            // Número de ciclos
+                     //  sonidoTerminado// Función callback que es llamada cuando termina
+      );
       break;
 
     case 4:
@@ -149,7 +155,7 @@ void evaluarHorarioAlarma() {
         //codigo 100
         if (FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0) {
           //     Beeps.evaluar(1);
-          buzzerMode = 1;
+          buzzerMode = 3;
           MyBeep(buzzerMode);
 
           sono = 1;
