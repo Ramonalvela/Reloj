@@ -155,7 +155,7 @@ void evaluarHorarioAlarma() {
         //codigo 100
         if (FechaHora.minute() == 0 && FechaHora.second() <= 59 && sono == 0) {
           //     Beeps.evaluar(1);
-          buzzerMode = 3;
+          buzzerMode = 1;
           MyBeep(buzzerMode);
 
           sono = 1;
